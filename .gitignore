@@ -3,7 +3,7 @@
 dependencies/
 
 # Logging
-server-log.txt
+server_log.txt
 log.txt
 logs/
 

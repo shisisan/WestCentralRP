@@ -1,5 +1,5 @@
 
-# Sampctl Gamemode Template
+# WestCentralRP
 
 Ini adalah sebuah template untuk kalian yang ingin membuat gamemode SA:MP menggunakan sampctl, template ini sudah dilengkapi dengan gamemode modular, serta beberapa include penting yang kalian dapat langsung gunakan tanpa mengunduh secara manual.
 
@@ -14,10 +14,11 @@ Sebelum kalian melakukan instalasi/pemasangan repositori ini, alangkah baiknya k
 
 Untuk menggunakan template ini, silahkan download repositori nya dengan menggunakan
 ```bash
-git clone https://github.com/pawn-id/sampctl-gamemode-template.git
+git clone https://github.com/shisisan/WestCentralRP
 ```
 
-atau bisa juga mendownload repositori secara manual menggunakan tombol "Download" (yang warna hijau) di github.com itu sendiri. Jika repositori sudah terdownload maka selanjutnya silahkan edit pawn.json sesuai dengan kebutuhan kamu, jika kamu melihat ada kata seperti `NAMAPROJECTMU` itu berarti ganti saja dengan nama gamemode yang akan kamu kerjakan, kalau melihat ada kata seperti `NAMAKAMU` itu berarti tinggal ganti saja dengan nama username github kamu (jika punya), atau kamu bisa isi sembarang. Sesudah itu kamu dapat mengetik perintah berikut:
+Lis Commands
+
 ```bash
 sampctl package update
 ```
@@ -49,3 +50,7 @@ NOTE: Bagi yang menggunakan sampctl versi 1.9.1 atau kebawah, bisa menambahkan `
 
 Watch ini agak spesial dari yang lain, dia bisa compile gamemode ketika kalian menyimpan perubahan dalam gamemode utama dengan menekan CTRL + S, bahkan juga bis menjalankan server ketika selesai menyimpan perubahan. Caranya sendiri cukup mudah, pastikan gamemode nya sudah terbuka, lalu silahkan melihat bagian [Compile gamemode](#compile-gamemode) atau [Menjalankan server](#menjalankan-server) dan tambahkan `--watch` setelah `build` dan `run`.
 
+
+# Credits
+* Thanks to pawn-id for the template
+* And thanks to all support
