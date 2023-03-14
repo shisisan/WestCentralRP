@@ -1,7 +1,8 @@
 static enum E_TEMP_CHARACTER_DATA
 {
     char_UUID[UUID_LEN],
-    char_Name[MAX_PLAYER_NAME + 1]
+    char_Name[MAX_PLAYER_NAME + 1],
+    char_Date
 }
 
 static temp_characterData[MAX_PLAYERS][MAX_CHARACTERS_PER_ACCOUNT][E_TEMP_CHARACTER_DATA];
@@ -45,18 +46,19 @@ stock Character_Show(const playerid)
     {
         if(i < rows)
         {
+            cache_get_value_name_int(i, "created_date", temp_characterData[playerid][i][char_Date]);
             cache_get_value_name(i, "uuid", temp_characterData[playerid][i][char_UUID], UUID_LEN);
             cache_get_value_name(i, "name", temp_characterData[playerid][i][char_Name], MAX_PLAYER_NAME + 1);
         }
         else
         {
-            strcopy(temp_characterData[playerid][i][char_Name], "No Have", MAX_PLAYER_NAME + 1);
+            strcopy(temp_characterData[playerid][i][char_Name], "None", MAX_PLAYER_NAME + 1);
         }
     }
 
     for(new i = 0; i != MAX_CHARACTERS_PER_ACCOUNT; i++)
     {
-        format(string, sizeof(string), "%s\n%s\t%s", string, temp_characterData[playerid][i][char_Name], temp_characterData[playerid][i][char_UUID]);
+        format(string, sizeof(string), "%s\n%s\t%s", string, temp_characterData[playerid][i][char_Name], ((temp_characterData[playerid][i][char_Date] ? "" : (ConvertTimestamp(Timestamp:temp_characterData[playerid][i][char_Date])))));
     }
 
     Dialog_ShowCallback(playerid, using inline dialogCharacterListRespond, DIALOG_STYLE_TABLIST_HEADERS, "Character | List", string, "Select", "Cancel");
@@ -254,7 +256,7 @@ function dialogCharConfirm(playerid, dialogid, response, listitem, string:inputt
         GetPVarString(playerid, "charSignUp_name", name, sizeof(name));
         GetPVarString(playerid, "charSignUp_birthday", birthday, sizeof(birthday));
         
-        await mysql_aquery_s(Database_GetHandleId(), str_format("INSERT INTO characters (uuid, account_id, name, gender, skin, birthday) VALUES ('%e', '%d', '%e', %d, %d, '%e')", uuid, AccLib_GetAccountId(playerid), name, GetPVarInt(playerid, "charSignUp_gender"), GetPVarInt(playerid, "charSignUp_skin"), birthday));
+        await mysql_aquery_s(Database_GetHandleId(), str_format("INSERT INTO characters (uuid, account_id, name, gender, skin, birthday, created_date) VALUES ('%e', '%d', '%e', %d, %d, '%e', '%i')", uuid, AccLib_GetAccountId(playerid), name, GetPVarInt(playerid, "charSignUp_gender"), GetPVarInt(playerid, "charSignUp_skin"), birthday, gettime()));
 
         if(cache_affected_rows() == 0)
         {

@@ -14,7 +14,8 @@
 		"IS4Code/PawnPlus:v1.4.2",
 		"AGraber/pawn-plus-mysql:1.0.3",
 		"Y-Less/sscanf:v2.13.8",
-		"oscar-broman/strlib"
+		"oscar-broman/strlib",
+		"Southclaws/pawn-chrono:1.1.1"
 	],
 	"local": true,
 	"runtime": {

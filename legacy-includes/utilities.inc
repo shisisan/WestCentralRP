@@ -14,6 +14,7 @@
 #define _INC_utilities
 
 #include <YSI_Coding\y_inline>
+#include <chrono>
 #include <YSI_Extra\y_inline_timers>
 
 stock DelayedKick(playerid, interval = 1000)
@@ -68,4 +69,15 @@ stock GetMonthDays(year, month) {
         default:    return -1;
     }
     return -1;
+}
+
+
+ConvertTimestamp(Timestamp:timestamp, bool:date = true)
+{
+    new output[256];
+
+    if(date) TimeFormat(timestamp + Timestamp:25200, "%a %d %b %Y, %T", output);
+    else TimeFormat(timestamp + Timestamp:25200, "%T", output);
+
+    return output;
 }
